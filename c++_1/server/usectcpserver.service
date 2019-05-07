@@ -1,0 +1,10 @@
+[Unit]
+Description=MicroSec TCP Server
+
+[Service]
+ExecStart=/home/andung/programming-test/c++_1/server/server
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
+Alias=usectcpserver.service
