@@ -11,11 +11,11 @@
 class ScriptLauncher {
 
 public:
-    static int Execute(std::string command, std::string& output);
+	static int Execute(std::string command, std::string& output);
 
 private:
-    static void Tokenize(std::string const &str, const char* delim,
-                         std::vector<std::string> &out);
+	static void Tokenize(std::string const &str, const char* delim,
+						 std::vector<std::string> &out);
 };
 
 

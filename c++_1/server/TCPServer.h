@@ -17,15 +17,15 @@
 class TCPServer {
 
 public:
-    TCPServer(int listeningPort);
-    int Init();
-    void Start();
+	TCPServer(int listeningPort);
+	int Init();
+	void Start();
 
 private:
-    int _listeningPort;
-    int _sockfd;
-    pthread_t _thread;
-    static void* ReceivingTask(void* arg);
+	int _listeningPort;
+	int _sockfd;
+	pthread_t _thread;
+	static void* ReceivingTask(void* arg);
 
 };
 

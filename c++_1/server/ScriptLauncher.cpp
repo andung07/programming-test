@@ -12,40 +12,40 @@
 
 
 void ScriptLauncher::Tokenize(std::string const &str, const char* delim,
-              std::vector<std::string> &out)
+			  std::vector<std::string> &out)
 {
-    char *token = strtok(const_cast<char*>(str.c_str()), delim);
-    while (token != nullptr)
-    {
-        out.push_back(std::string(token));
-        token = strtok(nullptr, delim);
-    }
+	char *token = strtok(const_cast<char*>(str.c_str()), delim);
+	while (token != nullptr)
+	{
+		out.push_back(std::string(token));
+		token = strtok(nullptr, delim);
+	}
 }
 
 
 int ScriptLauncher::Execute(std::string command, std::string& output) {
 
-    std::regex commandRegex("usec#crawl#.+#.+");
+	std::regex commandRegex("usec#crawl#.+#.+");
 
-    if (std::regex_match(command, commandRegex)) {
+	if (std::regex_match(command, commandRegex)) {
 
-        std::vector<std::string> commandParams;
-        Tokenize(command, "#", commandParams);
+		std::vector<std::string> commandParams;
+		Tokenize(command, "#", commandParams);
 
-        std::ostringstream finalCommand;
-        finalCommand << SCRIPT_LOCATION << " " << commandParams.at(2) << " " << commandParams.at(3);
+		std::ostringstream finalCommand;
+		finalCommand << SCRIPT_LOCATION << " " << commandParams.at(2) << " " << commandParams.at(3);
 
-        std::array<char, 128> buffer;
-        std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(finalCommand.str().c_str(), "r"), pclose);
+		std::array<char, 128> buffer;
+		std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(finalCommand.str().c_str(), "r"), pclose);
 
-        while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-            output += buffer.data();
-        }
+		while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+			output += buffer.data();
+		}
 
-        return 0;
+		return 0;
 
-    } else {
-        return -1;
-    }
+	} else {
+		return -1;
+	}
 
 }

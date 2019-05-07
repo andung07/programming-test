@@ -18,15 +18,15 @@
 class TCPClient {
 
 public:
-    TCPClient(std::string hostname, int port);
-    int Init();
-    int Write(std::string message);
-    int Read(std::string &message);
+	TCPClient(std::string hostname, int port);
+	int Init();
+	int Write(std::string message);
+	int Read(std::string &message);
 
 private:
-    std::string _hostname;
-    int _port;
-    int _sockfd;
+	std::string _hostname;
+	int _port;
+	int _sockfd;
 
 };
 

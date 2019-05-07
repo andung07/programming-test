@@ -3,11 +3,11 @@
 
 is_ip_valid()
 {
-  if [[ $1 =~ "([0-9]{1,3}\.)+([0-9]{1,3})" ]]; then
-    return 1
-  fi
+	if [[ $1 =~ "([0-9]{1,3}\.)+([0-9]{1,3})" ]]; then
+		return 1
+	fi
 
-  return 0
+	return 0
 }
 
 ###
@@ -15,13 +15,13 @@ is_ip_valid()
 ###
 
 if [ "$EUID" -ne 0 ]; then
-  echo "Root access is needed. Run with sudo!"
-  exit
+	echo "Root access is needed. Run with sudo!"
+	exit
 fi
 
 if [ "$#" -ne 2 ]; then
 	echo "Invalid number of arguments! Expecting 2"
-  echo "Usage: ./block_ip "ip_source" "duration" "
+	echo "Usage: ./block_ip "ip_source" "duration" "
 	exit
 fi
 
@@ -30,8 +30,8 @@ duration="$(( 60 * $2 ))"
 
 # check if duration is valid number
 if [[ $duration =~ "[0-9]+" ]]; then
-  echo "Duration is not a number"
-  exit
+	echo "Duration is not a number"
+	exit
 fi
 
 ipset_name="blacklist"
@@ -43,10 +43,10 @@ ipset create -exist $ipset_name hash:ip hashsize 4096 timeout 0
 
 for ip in "${ip_list[@]}"
 do
-  if is_ip_valid $ip; then
-    echo "adding $ip"
-    ipset -exist add $ipset_name $ip timeout $duration
-  fi
+	if is_ip_valid $ip; then
+		echo "adding $ip"
+		ipset -exist add $ipset_name $ip timeout $duration
+	fi
 done
 
 # set iptables using the created ipset

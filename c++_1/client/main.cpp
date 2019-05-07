@@ -11,23 +11,23 @@
 #define COMMAND "usec#crawl#https://www.kth.se/en#student"
 
 int main() {
-    TCPClient tcpClient(HOSTNAME, PORT);
+	TCPClient tcpClient(HOSTNAME, PORT);
 
-    if (tcpClient.Init() == 0) {
+	if (tcpClient.Init() == 0) {
 
-        tcpClient.Write(COMMAND);
+		tcpClient.Write(COMMAND);
 
-        std::string reply;
-        int retval = tcpClient.Read(reply);
+		std::string reply;
+		int retval = tcpClient.Read(reply);
 
-        if (retval == 0) {
-            std::cout << reply << std::endl;
-        } else {
-            std::cout << "TCP READ FAILED!" << std::endl;
-        }
+		if (retval == 0) {
+			std::cout << reply << std::endl;
+		} else {
+			std::cout << "TCP READ FAILED!" << std::endl;
+		}
 
-    } else {
-        syslog(LOG_ERR, "Error initializing the TCPClient!");
-        exit(-1);
-    }
+	} else {
+		syslog(LOG_ERR, "Error initializing the TCPClient!");
+		exit(-1);
+	}
 }

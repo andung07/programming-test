@@ -1,11 +1,11 @@
 #include "freq_control.h"
 
-void setup() 
+void setup()
 {
     SetFreq(CLOCK_1MHz);
 }
 
-void loop() 
+void loop()
 {
-    
+
 }

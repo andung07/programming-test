@@ -15,13 +15,13 @@
 
 int main() {
 
-    TCPServer tcpserver(LISTENING_PORT);
+	TCPServer tcpserver(LISTENING_PORT);
 
-    if (tcpserver.Init() == 0) {
-        tcpserver.Start();
-    } else {
-        syslog(LOG_ERR, "Error initializing the TCPServer!");
-        exit(-1);
-    }
+	if (tcpserver.Init() == 0) {
+		tcpserver.Start();
+	} else {
+		syslog(LOG_ERR, "Error initializing the TCPServer!");
+		exit(-1);
+	}
 
 }
